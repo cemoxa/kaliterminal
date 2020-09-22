@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kali Terminal</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    </head>
+    <body>
+        <div id="main">
+  
+        </div>
+
+        <div id="command">
+            <span id="preFormat">Пиши ёпт</span>:-#
+            <input id="theInput" value=""/>
+        </div>
+    </body>
+</html>
+<script>$(document).ready(function(){
+var text = "<span id='preFormat'>root@kali2018</span>:-# ";
+  
+  $("#theInput").keypress(function(e){
+    if(e.which==13){
+      var inputValue = $("#theInput").val().trim();
+      if(inputValue!=""){
+        if(inputValue=="clear"){
+          $("#main").html("");
+          $("#theInput").val("");
+        }else if(inputValue=="help"){
+          $("#main").append(text+inputValue+"<br/>"+"--You can enter any known linux command but unfortunately it will not be functional<br/>Available commands:<br/>ls<br/>cd<br/>mkdir<br/>mv<br/>");
+          $("#theInput").val("");
+        }else if(inputValue=="ls"){
+          $("#main").append(text+inputValue+"<br/>Provides a list of all the files included in the specified directory<br/>");
+          $("#theInput").val("");
+        }else if(inputValue=="cd"){
+          $("#main").append(text+inputValue+"<br/>Changes the shell's current working directory.<br/>");
+          $("#theInput").val("");
+        }else if(inputValue=="mkdir"){
+          $("#main").append(text+inputValue+"<br/>Creates new directories in your file system");
+          $("#theInput").val("");
+        }else if(inputValue=="mv"){
+          $("#main").append(text+inputValue+"<br/>Moves or renames files and directories on your file system<br/>");
+          $("#theInput").val("");
+        }else{
+          $("#main").append(text +inputValue+"<br/>Unknown linux command<br/>");
+          $("#theInput").val("");
+        }
+        
+        
+        
+      }else{
+        alert("Your input is empty. Please enter something");
+      }
+    }
+  });
+});</script>
+<style>body{
+  background-image:url("https://image.ibb.co/kOiOtL/kali-Background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color:white;
+  font-family: 'Ubuntu Mono', monospace;
+}
+#theInput{
+  width:80%;
+  background:transparent;
+  border:none;
+  color:white;
+  caret-color: white;
+}
+#command, #main{
+  font-size:17px;
+}
+#preFormat{
+  color:red;
+}
+
+@media(max-width:768px){
+  #theInput{
+    width:50%;
+  }
+}
+</style>
